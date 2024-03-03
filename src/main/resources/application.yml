@@ -1,0 +1,30 @@
+owner-name: srivatsan
+
+server:
+  port: 8080
+  servlet:
+    context-path: /grpc-server
+
+grpc:
+  server:
+    host: ${GRPC_SERVER_HOST:localhost}
+    port: ${GRPC_SERVER_PORT:6565}
+
+spring:
+  application:
+    name: gRPC_server
+
+
+  management:
+    endpoints:
+      web:
+        base-path: /actuator
+        exposure:
+          include: '*'
+  cloud:
+    consul:
+      discovery:
+        enabled: true
+        register: true
+        healthCheckPath: /actuator/health
+        healthCheckInterval: 1s

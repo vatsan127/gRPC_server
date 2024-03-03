@@ -2,7 +2,7 @@ package com.srivatsan.gRPC_server.transaction;
 
 import java.security.SecureRandom;
 
-public class TranssactionId {
+public class TransactionId {
     private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     private static final int ID_LENGTH = 7;
 
