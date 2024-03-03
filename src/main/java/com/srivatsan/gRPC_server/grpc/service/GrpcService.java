@@ -14,7 +14,7 @@ public class GrpcService extends NumberServiceGrpc.NumberServiceImplBase {
     public void getNumber(NumberRequest request, StreamObserver<NumberResponse> responseObserver) {
         int number = request.getNumber();
         NumberResponse response = NumberResponse.newBuilder().setNumber(number + 10).build();
-        log.info("GrpcServer :: request = {} :: response = {}",request, response);
+        log.info("request = {} :: response = {}",request, response);
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
