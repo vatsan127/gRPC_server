@@ -1,6 +1,7 @@
 package com.srivatsan.gRPC_server.grpc.service;
 
 import com.srivatsan.gRPC_server.GRpcServerApplication;
+import com.srivatsan.gRPC_server.grpc.host.HostNamePrinter;
 import io.grpc.stub.StreamObserver;
 import org.example.server.NumberRequest;
 import org.example.server.NumberResponse;
@@ -20,7 +21,8 @@ public class GrpcService extends NumberServiceGrpc.NumberServiceImplBase {
                 .setTxId(GRpcServerApplication.txId)
                 .build();
 
-        log.info("number - {} :: txId - {}", response.getNumber(),response.getTxId());
+        log.info("number - {} :: txId - {}", response.getNumber(), response.getTxId());
+        HostNamePrinter.print();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
