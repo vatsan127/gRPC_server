@@ -12,10 +12,9 @@ public class GrpcService extends NumberServiceGrpc.NumberServiceImplBase {
 
     @Override
     public void getNumber(NumberRequest request, StreamObserver<NumberResponse> responseObserver) {
-        log.info("NumberService :: getNumber :: request :: {}", request);
         int number = request.getNumber();
         NumberResponse response = NumberResponse.newBuilder().setNumber(number + 10).build();
-        log.info("NumberService :: getNumber :: response :: {}", response);
+        log.info("GrpcServer :: request = {} :: response = {}",request, response);
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
