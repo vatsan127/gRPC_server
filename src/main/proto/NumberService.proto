@@ -11,6 +11,7 @@ message NumberRequest{
 
 message NumberResponse{
   int32 number = 1;
+  string txId = 2;
 }
 
 service NumberService{

@@ -2,6 +2,7 @@ package com.srivatsan.gRPC_server;
 
 import com.srivatsan.gRPC_server.grpc.server.GrpcServer;
 import com.srivatsan.gRPC_server.grpc.service.GrpcService;
+import com.srivatsan.gRPC_server.transaction.TranssactionId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -11,6 +12,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class GRpcServerApplication {
     private static Logger log = LoggerFactory.getLogger(GRpcServerApplication.class);
+
+    public static final String txId = TranssactionId.generateTransactionId();
 
     public static void startServer() {
         log.info("Initializing gRPC server .");

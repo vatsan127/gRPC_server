@@ -1,6 +1,7 @@
 package com.srivatsan.gRPC_server.grpc.server;
 
 
+import com.srivatsan.gRPC_server.GRpcServerApplication;
 import io.grpc.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,8 +20,7 @@ public class GrpcServer {
         this.server = server;
     }
 
-    /*For default server port*/
-    public static GrpcServer create(BindableService... services){
+    public static GrpcServer create(BindableService... services) {
         return create(6565, services);
     }
 
@@ -40,6 +40,7 @@ public class GrpcServer {
         try {
             server.start();
             log.info("Started gRPC server on port {} .", port);
+            log.info("gRPC Server TxId - {} ", GRpcServerApplication.txId);
             log.info("Services running {} .", grpcServices);
             return this;
         } catch (Exception e) {
@@ -56,7 +57,7 @@ public class GrpcServer {
         }
     }
 
-    public void stop(){
+    public void stop() {
         server.shutdownNow();
         log.debug("gRPC Server stopped");
     }
