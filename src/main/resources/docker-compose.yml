@@ -1,0 +1,19 @@
+version: "3"
+services:
+  grpc-server:
+    image: grpc_server
+    networks:
+      - grpc-network
+    # replica: 3
+  nginx:
+    image: nginx:latest
+    depends_on:
+      - grpc-server
+    volumes:
+      - C:\nginx-1.25.4\conf:/etc/nginx/conf.d
+    ports:
+      - 6565:6565
+    networks:
+      - grpc-network
+networks:
+  grpc-network:
