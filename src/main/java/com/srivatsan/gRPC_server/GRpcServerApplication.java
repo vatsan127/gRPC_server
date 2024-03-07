@@ -12,7 +12,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class GRpcServerApplication {
     private static Logger log = LoggerFactory.getLogger(GRpcServerApplication.class);
-
     public static final String txId = TranssactionId.generateTransactionId();
 
     public static void startServer() {
