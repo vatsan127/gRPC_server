@@ -2,6 +2,8 @@ version: "3"
 services:
   consul:
     image: hashicorp/consul
+    depends_on:
+      - grpc-server
     ports:
       - "8500:8500"
     environment:
@@ -9,21 +11,11 @@ services:
       - CONSUL_PORT=8500
 
   grpc-server:
-    image: vatsan127/grpc_server
-    depends_on:
-      - consul
-    environment:
-      - CONSUL_HOST=consul
-      - CONSUL_PORT=8500
+    image: grpc_server
+    networks:
+      - grpc-network
     deploy:
-      replicas: 2
-
-  nginx:
-    image: nginx:1.15-alpine
-    depends_on:
-      - grpc-server
-    volumes:
-      - ./nginx-conf/conf:/etc/nginx/conf.d
+      replicas: 1
 
   grpc-client:
     image: vatsan127/grpc_client
@@ -34,5 +26,19 @@ services:
       - GRPC_SERVER_PORT=6565
     deploy:
       replicas: 1
-    command: ["7"]
+    command: [ "7" ]
+
+  nginx:
+    image: nginx:latest
+    depends_on:
+      - grpc-server
+    volumes:
+      - C:\nginx-1.25.4\conf:/etc/nginx/conf.d
+    ports:
+      - 6565:6565
+    networks:
+      - grpc-network
+
+networks:
+  grpc-network:
 
